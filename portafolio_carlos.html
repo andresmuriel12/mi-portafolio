@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portafolio | Carlos Andrés Muriel Taborda</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* Apply Inter font globally */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Add some subtle transition for hover effects */
+        a, button {
+            transition: all 0.3s ease;
+        }
+        /* Grid layout adjustments for projects */
+        /* On medium screens and up, display 2 columns */
+        @media (min-width: 768px) {
+            #projects .grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+    </style>
+    <meta name="description" content="Portafolio de Carlos Andrés Muriel Taborda, Tecnólogo Industrial especializado en Análisis de Datos y Business Intelligence.">
+    <meta name="keywords" content="Carlos Muriel, Analista de Datos, Business Intelligence, Power BI, SQL, Excel, Tecnólogo Industrial, Portafolio">
+</head>
+<body class="bg-gray-50 text-gray-800 antialiased">
+
+    <nav class="bg-white shadow-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex-shrink-0 flex items-center">
+                    <span class="font-bold text-xl text-gray-800">Carlos A. Muriel T.</span>
+                </div>
+                <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
+                    <a href="#about" class="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700">Acerca de Mí</a>
+                    <a href="#projects" class="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700">Proyectos</a>
+                    <a href="#skills" class="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700">Habilidades</a>
+                    <a href="#experience" class="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700">Experiencia</a>
+                    <a href="#education" class="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700">Formación</a>
+                    <a href="#contact" class="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700">Contacto</a>
+                </div>
+                <div class="-mr-2 flex items-center sm:hidden">
+                    <button type="button" id="mobile-menu-button" class="bg-white inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-gray-500" aria-controls="mobile-menu" aria-expanded="false">
+                        <span class="sr-only">Abrir menú principal</span>
+                        <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                        <svg class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="sm:hidden hidden" id="mobile-menu">
+            <div class="pt-2 pb-3 space-y-1">
+                <a href="#about" class="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800">Acerca de Mí</a>
+                <a href="#projects" class="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800">Proyectos</a>
+                <a href="#skills" class="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800">Habilidades</a>
+                <a href="#experience" class="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800">Experiencia</a>
+                <a href="#education" class="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800">Formación</a>
+                <a href="#contact" class="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800">Contacto</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="bg-gradient-to-r from-gray-900 to-gray-700 text-white pt-24 pb-32">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <img src="https://i.ibb.co/cKbDKWSs/Imagen-de-Whats-App-2025-05-25-a-las-17-02-03-be2a9cef.jpg" alt="Foto Profesional de Carlos Muriel" class="w-36 h-36 rounded-full mx-auto mb-6 border-4 border-white shadow-lg object-cover" onerror="this.onerror=null; this.src='https://placehold.co/150x150/E2E8F0/4A5568?text=Error+Img'; this.alt='Error al cargar la imagen';">
+
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold mb-4">Carlos Andrés Muriel Taborda</h1>
+            <h2 class="text-xl sm:text-2xl lg:text-3xl font-medium mb-6">Tecnólogo Industrial | Análisis de Datos y Business Intelligence</h2>
+            <p class="max-w-3xl mx-auto text-lg text-gray-200 mb-8">
+                Transformando datos en decisiones estratégicas mediante Excel Avanzado, Power BI y SQL. Experiencia comprobada en optimización de procesos y análisis de información en áreas administrativas en Itagüí, Colombia.
+            </p>
+            <div class="space-y-4 sm:space-y-0 sm:space-x-4">
+                <a href="#projects" class="bg-white text-gray-800 font-bold py-3 px-6 rounded-lg shadow-md hover:bg-gray-200 block sm:inline-block">
+                    Ver Mis Proyectos
+                </a>
+                <a href="#contact" class="bg-transparent border-2 border-white text-white font-bold py-3 px-6 rounded-lg hover:bg-white hover:text-gray-800 block sm:inline-block">
+                    Contactar
+                </a>
+                 <a href="https://www.linkedin.com/in/carlos-andr%C3%A9s-muriel-taborda-5a0467322/" target="_blank" rel="noopener noreferrer" class="inline-block align-middle bg-white text-gray-700 p-3 rounded-full shadow-md hover:bg-gray-200 mt-4 sm:mt-0" aria-label="LinkedIn Profile">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.59-11.018-3.714v-2.155z"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section id="about" class="py-16 lg:py-24 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl font-bold text-center mb-12 text-gray-900">Acerca de Mí</h2>
+                <div class="max-w-3xl mx-auto text-lg text-gray-700 space-y-6 text-center">
+                    <p>
+                        Tecnólogo Industrial apasionado por la <strong class="font-semibold">interpretación de datos</strong> para impulsar el éxito organizacional. Combino mi sólida formación técnica con habilidades analíticas prácticas en <strong class="font-semibold">Excel (Power Query, Pivot, DAX), Power BI y SQL</strong>.
+                    </p>
+                    <p>
+                        Me caracterizo por mi <strong class="font-semibold">perseverancia, responsabilidad y enfoque en resultados</strong>, con capacidad demostrada para el <strong class="font-semibold">trabajo en equipo</strong> y una rápida <strong class="font-semibold">adaptación</strong> a nuevos desafíos y tecnologías. Mi objetivo es aplicar mi pasión por el análisis de datos para <strong class="font-semibold">optimizar procesos y generar valor tangible</strong> en entornos dinámicos.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="py-16 lg:py-24 bg-gray-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl font-bold text-center mb-16 text-gray-900">Proyectos Destacados</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden flex flex-col">
+                        <img src="https://i.ibb.co/4gRKMD9z/Captura-de-pantalla-2025-05-04-180250.png" alt="Vista previa del proyecto Análisis de Ventas" class="w-full h-48 object-cover" onerror="this.onerror=null; this.src='https://placehold.co/600x400/E0E7FF/374151?text=Error+Imagen'; this.alt='Error al cargar la imagen';">
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="text-xl font-semibold mb-3 text-gray-900">Análisis Interactivo de Ventas (Tienda Deportiva)</h3>
+                            <p class="text-gray-600 mb-2"><strong class="font-medium">Reto:</strong> Comprender a fondo el rendimiento de ventas y devoluciones para guiar decisiones estratégicas.</p>
+                            <p class="text-gray-600 mb-4"><strong class="font-medium">Acción:</strong> Desarrollé un dashboard en Power BI desglosando ventas por demografía, geografía, categoría y comparativa anual.</p>
+                            <p class="text-gray-600 mb-4"><strong class="font-medium">Impacto:</strong> Facilitó una visión clara del rendimiento, permitiendo la toma de decisiones basadas en datos.</p>
+                            <div class="mt-auto pt-4">
+                                <a href="https://app.powerbi.com/view?r=eyJrIjoiZTBkZjkwZGMtYWI3Yy00MTc5LWEwMTgtYzVlYWNmNTdmZWU4IiwidCI6IjM4ZjY4YzMyLWQxZWYtNDY4Zi04MzdjLTMzZTA0NjA3YmQyOSIsImMiOjR9" target="_blank" rel="noopener noreferrer" class="inline-block bg-gray-800 text-white font-medium py-2 px-4 rounded-lg hover:bg-gray-900">
+                                    Ver Dashboard en Power BI
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden flex flex-col">
+                        <img src="https://i.ibb.co/MxNF4mfK/Captura-de-pantalla-2025-05-04-180604.png" alt="Vista previa del proyecto Análisis de Producción" class="w-full h-48 object-cover" onerror="this.onerror=null; this.src='https://placehold.co/600x400/D1FAE5/1F2937?text=Error+Imagen'; this.alt='Error al cargar la imagen';">
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="text-xl font-semibold mb-3 text-gray-900">Análisis de Rendimiento (Producción Textil)</h3>
+                            <p class="text-gray-600 mb-2"><strong class="font-medium">Reto:</strong> Analizar la producción, gastos e ingresos para identificar eficiencias.</p>
+                            <p class="text-gray-600 mb-4"><strong class="font-medium">Acción:</strong> Creé un análisis en Power BI integrando producción, finanzas y KPIs de cumplimiento.</p>
+                            <p class="text-gray-600 mb-4"><strong class="font-medium">Impacto:</strong> Proporcionó una visión integral que facilitó la toma de decisiones informadas para la gestión.</p>
+                             <div class="mt-auto pt-4">
+                                <a href="https://app.powerbi.com/view?r=eyJrIjoiZmY5YWUxMWUtOWQxNS00MDlmLThiODQtNzgwNmFkOGY2MzlhIiwidCI6IjM4ZjY4YzMyLWQxZWYtNDY4Zi04MzdjLTMzZTA0NjA3YmQyOSIsImMiOjR9" target="_blank" rel="noopener noreferrer" class="inline-block bg-gray-800 text-white font-medium py-2 px-4 rounded-lg hover:bg-gray-900">
+                                    Ver Dashboard en Power BI
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden flex flex-col">
+                        <img src="https://i.ibb.co/Mkch3b2r/Captura-de-pantalla-2024-07-07-151501.png" alt="Vista previa del proyecto Análisis Comercial" class="w-full h-48 object-cover" onerror="this.onerror=null; this.src='https://placehold.co/600x400/FEF3C7/92400E?text=Error+Imagen'; this.alt='Error al cargar la imagen';">
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="text-xl font-semibold mb-3 text-gray-900">Análisis Comercial (Ventas de Vehículos)</h3>
+                            <p class="text-gray-600 mb-2"><strong class="font-medium">Reto:</strong> Evaluar el rendimiento de ventas, vendedores y cumplimiento de metas.</p>
+                            <p class="text-gray-600 mb-4"><strong class="font-medium">Acción:</strong> Utilicé Excel (Power Query, Power Pivot, DAX) para analizar ventas, comparar rendimiento mensual/vendedor e identificar concesionarios destacados.</p>
+                            <p class="text-gray-600 mb-4"><strong class="font-medium">Impacto:</strong> Generé un reporte detallado que facilitó el seguimiento de metas y la toma de decisiones gerenciales.</p>
+                            <p class="text-sm text-gray-600 mt-2"><strong class="font-semibold">Nota:</strong> Para una mejor comprensión de la información, descargar el reporte y abrirlo.</p>
+                             <div class="mt-auto pt-4">
+                                <a href="https://elpolieduco-my.sharepoint.com/:x:/g/personal/carlos_muriel06151_elpoli_edu_co/EZ7u9PkUIZtPj997cw3nvmkBA8bgpBB0SuaoNipmFkmuLQ?rtime=mIAticF-3Ug" target="_blank" rel="noopener noreferrer" class="inline-block bg-gray-800 text-white font-medium py-2 px-4 rounded-lg hover:bg-gray-900">
+                                    Ver Reporte en Excel
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                     <div class="bg-white rounded-lg shadow-lg overflow-hidden flex flex-col">
+                        <img src="https://i.ibb.co/b5Pd5DHg/Captura-de-pantalla-2025-05-04-180801.png" alt="Vista previa del proyecto Análisis Logístico" class="w-full h-48 object-cover" onerror="this.onerror=null; this.src='https://placehold.co/600x400/BFDBFE/1E3A8A?text=Error+Imagen'; this.alt='Error al cargar la imagen';">
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="text-xl font-semibold mb-3 text-gray-900">Análisis Logístico (Distribución)</h3>
+                            <p class="text-gray-600 mb-2"><strong class="font-medium">Reto:</strong> Analizar detalladamente el desempeño logístico en el proceso de distribución.</p>
+                            <p class="text-gray-600 mb-4"><strong class="font-medium">Acción:</strong> Destaqué KPIs (pedidos, valor, días entrega, puntualidad), incluí indicadores de cumplimiento y evolución mensual de pedidos/distancia.</p>
+                            <p class="text-gray-600 mb-4"><strong class="font-medium">Impacto:</strong> Herramienta valiosa para evaluar rendimiento, realizar ajustes estratégicos y mejorar eficiencia en entrega/distribución.</p>
+                             <div class="mt-auto pt-4">
+                                <a href="https://app.powerbi.com/view?r=eyJrIjoiNDE0ZWFiYzUtOTk3ZC00Nzg4LTg3ODItNzExZTc0NWI4NDYzIiwidCI6IjM4ZjY4YzMyLWQxZWYtNDY4Zi04MzdjLTMzZTA0NjA3YmQyOSIsImMiOjR9" target="_blank" rel="noopener noreferrer" class="inline-block bg-gray-800 text-white font-medium py-2 px-4 rounded-lg hover:bg-gray-900">
+                                    Ver Dashboard en Power BI
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="py-16 lg:py-24 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl font-bold text-center mb-16 text-gray-900">Habilidades Clave</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                    <div>
+                        <h3 class="text-xl font-semibold mb-4 text-gray-800">Análisis de Datos y BI</h3>
+                        <ul class="space-y-2">
+                            <li class="flex items-center"><span class="inline-block h-2 w-2 bg-gray-600 rounded-full mr-2"></span>Excel Avanzado (Power Query, Power Pivot, DAX)</li>
+                            <li class="flex items-center"><span class="inline-block h-2 w-2 bg-gray-600 rounded-full mr-2"></span>Power BI (Dashboards, Modelado, DAX)</li>
+                            <li class="flex items-center"><span class="inline-block h-2 w-2 bg-gray-600 rounded-full mr-2"></span>SQL (Consultas, Gestión BBDD)</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold mb-4 text-gray-800">Automatización y ERP</h3>
+                        <ul class="space-y-2">
+                            <li class="flex items-center"><span class="inline-block h-2 w-2 bg-gray-500 rounded-full mr-2"></span>Power Automate</li>
+                            <li class="flex items-center"><span class="inline-block h-2 w-2 bg-gray-500 rounded-full mr-2"></span>Power Apps</li>
+                            <li class="flex items-center"><span class="inline-block h-2 w-2 bg-gray-500 rounded-full mr-2"></span>Bizagi</li>
+                            <li class="flex items-center"><span class="inline-block h-2 w-2 bg-gray-500 rounded-full mr-2"></span>SAP</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold mb-4 text-gray-800">Competencias Profesionales</h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-gray-200 text-gray-700 px-3 py-1 rounded-full text-sm">Análisis de Datos</span>
+                            <span class="bg-gray-200 text-gray-700 px-3 py-1 rounded-full text-sm">Resolución de Problemas</span>
+                            <span class="bg-gray-200 text-gray-700 px-3 py-1 rounded-full text-sm">Comunicación Asertiva</span>
+                            <span class="bg-gray-200 text-gray-700 px-3 py-1 rounded-full text-sm">Trabajo en Equipo</span>
+                            <span class="bg-gray-200 text-gray-700 px-3 py-1 rounded-full text-sm">Adaptabilidad</span>
+                            <span class="bg-gray-200 text-gray-700 px-3 py-1 rounded-full text-sm">Gestión del Tiempo</span>
+                            <span class="bg-gray-200 text-gray-700 px-3 py-1 rounded-full text-sm">Creatividad</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience" class="py-16 lg:py-24 bg-gray-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl font-bold text-center mb-16 text-gray-900">Experiencia Profesional</h2>
+                <div class="space-y-12 max-w-4xl mx-auto">
+                    <div class="flex items-start space-x-4 sm:space-x-6">
+                        <img src="https://i.ibb.co/FQT0TXC/OIP.jpg" alt="Logo Americas BPS" class="w-12 h-12 sm:w-16 sm:h-16 rounded-full object-contain border-2 border-gray-300 flex-shrink-0 mt-1" onerror="this.onerror=null; this.src='https://placehold.co/64x64/cccccc/969696?text=Logo'; this.alt='Logo Americas BPS';">
+                        <div class="flex-grow">
+                             <p class="text-sm text-gray-500 mb-1">Sep 2024 – (Actualidad)</p>
+                             <h3 class="text-xl font-semibold text-gray-900">Sale support</h3>
+                             <p class="text-lg text-gray-700 mb-2">Americas BPS – (HP) | Medellín</p>
+                             <ul class="list-disc list-inside text-gray-600 space-y-1 text-sm sm:text-base">
+                                <li>Proporcioné soporte analítico financiero esencial para la toma de decisiones sobre la venta de productos.</li>
+                                <li>Actué como punto de enlace de información para el área comercial, asegurando la disponibilidad de datos precisos sobre productos.</li>
+                                <li>Creé reportes dinámicos en Power BI para el análisis trimestral del desempeño comercial, facilitando la visualización de tendencias y variables a lo largo del tiempo.</li>
+                                <li>Optimicé la gestión de tareas diarias y responsabilidades del cargo mediante el análisis y priorización efectiva de la información recibida por correo electrónico.</li>
+                                <li>Realicé análisis periódicos de inventario y ventas semanales, contribuyendo al seguimiento preciso del progreso.</li>
+                             </ul>
+                        </div>
+                    </div>
+                    <div class="flex items-start space-x-4 sm:space-x-6">
+                        <img src="https://i.ibb.co/whdxmVSc/Eficacia-logo-1024x955.png" alt="Logo Eficacia" class="w-12 h-12 sm:w-16 sm:h-16 rounded-full object-contain border-2 border-gray-300 flex-shrink-0 mt-1" onerror="this.onerror=null; this.src='https://placehold.co/64x64/cccccc/969696?text=Logo'; this.alt='Logo Eficacia';">
+                        <div class="flex-grow">
+                             <p class="text-sm text-gray-500 mb-1">Abr 2024 – Jun 2024</p>
+                             <h3 class="text-xl font-semibold text-gray-900">Auxiliar de Facturación (Reemplazo)</h3>
+                             <p class="text-lg text-gray-700 mb-2">COLTABACO - (Eficacia) | Medellín</p>
+                             <ul class="list-disc list-inside text-gray-600 space-y-1 text-sm sm:text-base">
+                                <li>Implementé soluciones de automatización que mejoraron la eficiencia operativa, reduciendo el tiempo de procesamiento de facturas.</li>
+                                <li>Gestioné y mantuve bases de datos precisas y actualizadas, asegurando la integridad y confiabilidad de la información.</li>
+                                <li>Realicé la facturación de pedidos y verifiqué la información de inventarios a través de SAP.</li>
+                                <li>Brindé soporte a los equipos comerciales en la optimización de procesos operativos de facturación, incrementando la satisfacción y fidelización de los clientes.</li>
+                                <li>Optimicé el análisis y manipulación de datos mediante el manejo avanzado de Excel.</li>
+                             </ul>
+                        </div>
+                    </div>
+                     <div class="flex items-start space-x-4 sm:space-x-6">
+                        <img src="https://i.ibb.co/LzGgLR6T/Captura-de-pantalla-2025-05-25-172719.png" alt="Logo MARÍA SHALOM S.A.S" class="w-12 h-12 sm:w-16 sm:h-16 rounded-full object-contain border-2 border-gray-300 flex-shrink-0 mt-1" onerror="this.onerror=null; this.src='https://placehold.co/64x64/cccccc/969696?text=Logo'; this.alt='Logo MARÍA SHALOM S.A.S';">
+                        <div class="flex-grow">
+                             <p class="text-sm text-gray-500 mb-1">Sep 2023 – Abr 2024</p>
+                             <h3 class="text-xl font-semibold text-gray-900">Analista de Información</h3>
+                             <p class="text-lg text-gray-700 mb-2">MARÍA SHALOM S.A.S | Itagüí</p>
+                             <ul class="list-disc list-inside text-gray-600 space-y-1 text-sm sm:text-base">
+                                <li>Implementé un sistema automatizado de recolección y análisis de datos de producción.</li>
+                                <li>Integré indicadores clave de rendimiento (KPIs) en tiempo real para la toma de decisiones estratégicas.</li>
+                                <li>Diseñé e implementé una base de datos centralizada para el almacenamiento y análisis de datos de producción.</li>
+                                <li>Identifiqué tendencias y patrones clave en los datos que permitieron optimizar los procesos de producción.</li>
+                                <li>Presenté informes concisos y accionables a través de Excel avanzado y Power bi para la toma de decisiones estratégicas.</li>
+                             </ul>
+                        </div>
+                    </div>
+                     <div class="flex items-start space-x-4 sm:space-x-6">
+                        <img src="https://i.ibb.co/B5BDZqNv/1657138756271.jpg" alt="Logo INTEGRALES COLOMBIA S.A.S" class="w-12 h-12 sm:w-16 sm:h-16 rounded-full object-contain border-2 border-gray-300 flex-shrink-0 mt-1" onerror="this.onerror=null; this.src='https://placehold.co/64x64/cccccc/969696?text=Logo'; this.alt='Logo INTEGRALES COLOMBIA S.A.S';">
+                        <div class="flex-grow">
+                             <p class="text-sm text-gray-500 mb-1">Mar 2023 – Ago 2023</p>
+                             <h3 class="text-xl font-semibold text-gray-900">Auxiliar Analista de Datos</h3>
+                             <p class="text-lg text-gray-700 mb-2">Grupo Logis – (INTEGRALES COLOMBIA S.A.S) | Copacabana</p>
+                             <ul class="list-disc list-inside text-gray-600 space-y-1 text-sm sm:text-base">
+                                <li>Optimizé el análisis y manipulación de datos mediante el manejo avanzado de Excel.</li>
+                                <li>Desarrollé y actualicé informes en Power BI para la visualización de datos, mejorando la calidad y claridad de la información presentada a los clientes y gerentes.</li>
+                                <li>Creé y gestioné bases de datos para el almacenamiento de información, asegurando la integridad, confiabilidad de los datos.</li>
+                                <li>Utilicé el sistema SAP de forma eficiente y precisa para el cargue y modificación de información, evitando errores y retrasos en los procesos administrativos.</li>
+                                <li>Realicé el seguimiento a las actividades de facturación para reporte de gastos, contribuyendo a la transparencia y eficiencia financiera.</li>
+                                <li>Brindé soporte a los equipos comerciales en la optimización de procesos operativos, incrementando la satisfacción y fidelización de los clientes.</li>
+                             </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="education" class="py-16 lg:py-24 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                 <h2 class="text-3xl font-bold text-center mb-12 text-gray-900">Formación Académica</h2>
+                 <div class="max-w-3xl mx-auto text-center space-y-6">
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-900">Tecnólogo Industrial</h3>
+                        <p class="text-lg text-gray-700">Politécnico Colombiano Jaime Isaza Cadavid</p>
+                    </div>
+                     <div>
+                        <h3 class="text-xl font-semibold text-gray-900">Certificación: Análisis de Datos y Business Intelligence</h3>
+                        <p class="text-lg text-gray-700">Platzi (200 Horas)</p>
+                    </div>
+                     <div>
+                        <h3 class="text-xl font-semibold text-gray-900">Formación Clave Adicional</h3>
+                        <p class="text-lg text-gray-700">Cursos en Excel Avanzado (Power Query/Pivot/DAX), Power BI, SQL (Platzi, Udemy).</p>
+                    </div>
+                 </div>
+            </div>
+        </section>
+
+        <section id="contact" class="py-16 lg:py-24 bg-gradient-to-r from-gray-900 to-gray-700 text-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h2 class="text-3xl font-bold mb-6">¿Listo para transformar tus datos? ¡Hablemos!</h2>
+                <p class="max-w-2xl mx-auto text-lg text-gray-200 mb-10">
+                    Busco activamente oportunidades desafiantes donde pueda aplicar mis habilidades en análisis de datos para generar un impacto significativo.
+                </p>
+                <div class="space-y-4 sm:space-y-0 sm:space-x-6">
+                    <a href="mailto:carlos_muriel06151@elpoli.edu.co" class="inline-block bg-white text-gray-800 font-bold py-3 px-6 rounded-lg shadow-md hover:bg-gray-200">
+                        Enviar Email
+                    </a>
+                    <a href="https://www.linkedin.com/in/carlos-andr%C3%A9s-muriel-taborda-5a0467322/" target="_blank" rel="noopener noreferrer" class="inline-block bg-white text-gray-800 font-bold py-3 px-6 rounded-lg shadow-md hover:bg-gray-200">
+                        Conectar en LinkedIn
+                    </a>
+                     <p class="text-gray-200 pt-4">Teléfono: (+57) 321 792 5143</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-900 text-gray-400 py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-sm">
+            <p>&copy; <span id="currentYear"></span> Carlos Andrés Muriel Taborda. Todos los derechos reservados.</p>
+            <p>Ubicado en Itagüí, Antioquia, Colombia.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const menuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const openIcon = menuButton.querySelector('svg:nth-child(1)'); // Menu icon
+        const closeIcon = menuButton.querySelector('svg:nth-child(2)'); // X icon
+
+        menuButton.addEventListener('click', () => {
+            const expanded = menuButton.getAttribute('aria-expanded') === 'true' || false;
+            menuButton.setAttribute('aria-expanded', !expanded);
+            mobileMenu.classList.toggle('hidden');
+            openIcon.classList.toggle('hidden');
+            openIcon.classList.toggle('block');
+            closeIcon.classList.toggle('hidden');
+            closeIcon.classList.toggle('block');
+        });
+
+        // Close mobile menu when a link is clicked
+        const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+        mobileMenuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (menuButton.getAttribute('aria-expanded') === 'true') {
+                    menuButton.click(); // Simulate a click on the menu button to close
+                }
+            });
+        });
+
+        // Simple script to update the current year in the footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+    </script>
+
+</body>
+</html>
