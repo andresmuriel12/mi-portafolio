@@ -1,55 +1,197 @@
 <!DOCTYPE html>
 <html lang="es" class="scroll-smooth">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portafolio | Carlos Andrés Muriel Taborda</title>
-    <!-- Tailwind CSS CDN for styling -->
+
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Font - Inter -->
+
+    <!-- Google Fonts - Outfit -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
-    <style>
-        /* Apply Inter font globally */
-        body {
-            font-family: 'Inter', sans-serif;
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Tailwind Custom Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            400: '#60a5fa',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            900: '#1e3a8a',
+                        }
+                    },
+                    animation: {
+                        'blob': 'blob 7s infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        blob: {
+                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        }
+                    }
+                }
+            }
         }
-        /* Add some subtle transition for hover effects */
-        a, button {
-            transition: all 0.3s ease;
+    </script>
+
+    <style>
+        /* Glassmorphism classes */
+        .glass {
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .glass-card {
+            background: rgba(30, 41, 59, 0.4);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .glass-dark {
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Ambient background patterns */
+        .bg-grid {
+            background-size: 40px 40px;
+            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+        }
+
+        .chart-line {
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+            animation: drawLine 4s ease-out forwards infinite alternate;
+        }
+
+        @keyframes drawLine {
+            from {
+                stroke-dashoffset: 1000;
+            }
+
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+
+        .bar-animate {
+            animation: growBar 3s ease-out infinite alternate;
+            transform-origin: bottom;
+        }
+
+        @keyframes growBar {
+            0% {
+                transform: scaleY(0.1);
+            }
+
+            100% {
+                transform: scaleY(1);
+            }
+        }
+
+        /* Scroll reveal animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Custom link hover */
+        .nav-link {
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: #2563eb;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
         }
     </style>
-    <meta name="description" content="Portafolio de Carlos Andrés Muriel Taborda, Tecnólogo Industrial especializado en Análisis de Datos y Business Intelligence.">
-    <meta name="keywords" content="Carlos Muriel, Analista de Datos, Business Intelligence, Power BI, SQL, Excel, Tecnólogo Industrial, Portafolio">
+
+    <meta name="description"
+        content="Portafolio de Carlos Andrés Muriel Taborda, Tecnólogo Industrial especializado en Análisis de Datos y Business Intelligence.">
 </head>
-<body class="bg-gray-50 text-gray-800 antialiased">
+
+<body class="bg-slate-950 text-slate-300 antialiased selection:bg-brand-900/400 selection:text-white overflow-x-hidden">
 
     <!-- Navbar -->
-    <nav class="bg-white shadow-md sticky top-0 z-50">
+    <nav class="fixed w-full z-50 glass transition-all duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-16">
+            <div class="flex items-center justify-between h-20">
                 <div class="flex-shrink-0 flex items-center">
-                    <span class="font-bold text-xl text-gray-800">Carlos A. Muriel T.</span>
+                    <span class="font-extrabold text-2xl tracking-tight text-white">
+                        Carlos<span class="text-brand-600">.</span>M
+                    </span>
                 </div>
-                <!-- Desktop Navigation Links -->
-                <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
-                    <a href="#about" class="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700">Acerca de Mí</a>
-                    <a href="#projects" class="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700">Proyectos</a>
-                    <a href="#skills" class="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700">Habilidades</a>
-                    <a href="#experience" class="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700">Experiencia</a>
-                    <a href="#education" class="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700">Formación</a>
-                    <a href="#contact" class="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700">Contacto</a>
+                <!-- Desktop Navigation -->
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="#about"
+                            class="nav-link text-slate-400 hover:text-brand-600 font-medium transition-colors">Acerca de
+                            Mí</a>
+                        <a href="#projects"
+                            class="nav-link text-slate-400 hover:text-brand-600 font-medium transition-colors">Proyectos</a>
+                        <a href="#skills"
+                            class="nav-link text-slate-400 hover:text-brand-600 font-medium transition-colors">Habilidades</a>
+                        <a href="#experience"
+                            class="nav-link text-slate-400 hover:text-brand-600 font-medium transition-colors">Experiencia</a>
+                        <a href="#education"
+                            class="nav-link text-slate-400 hover:text-brand-600 font-medium transition-colors">Formación</a>
+                        <!-- Contact Button -->
+                        <a href="#contact"
+                            class="px-5 py-2.5 rounded-full bg-slate-900 text-white font-medium hover:bg-brand-600 transition-all shadow-lg hover:shadow-brand-500/30 ml-4">
+                            Hablemos
+                        </a>
+                    </div>
                 </div>
-                <!-- Mobile Menu Button -->
-                <div class="-mr-2 flex items-center sm:hidden">
-                    <button type="button" id="mobile-menu-button" class="bg-white inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-gray-500" aria-controls="mobile-menu" aria-expanded="false">
-                        <span class="sr-only">Abrir menú principal</span>
-                        <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                        </svg>
-                        <svg class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                <!-- Mobile menu button -->
+                <div class="-mr-2 flex md:hidden">
+                    <button type="button" id="mobile-menu-button"
+                        class="inline-flex items-center justify-center p-2 rounded-md text-slate-400 hover:text-brand-600 hover:bg-slate-800 focus:outline-none">
+                        <svg class="block h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16M4 18h16" />
                         </svg>
                     </button>
                 </div>
@@ -57,40 +199,119 @@
         </div>
 
         <!-- Mobile Menu -->
-        <div class="sm:hidden hidden" id="mobile-menu">
-            <div class="pt-2 pb-3 space-y-1">
-                <a href="#about" class="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800">Acerca de Mí</a>
-                <a href="#projects" class="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800">Proyectos</a>
-                <a href="#skills" class="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800">Habilidades</a>
-                <a href="#experience" class="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800">Experiencia</a>
-                <a href="#education" class="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800">Formación</a>
-                <a href="#contact" class="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800">Contacto</a>
+        <div class="md:hidden hidden bg-slate-900/95 backdrop-blur-lg border-t border-slate-800 absolute w-full"
+            id="mobile-menu">
+            <div class="px-4 pt-2 pb-6 space-y-2">
+                <a href="#about"
+                    class="block px-3 py-3 rounded-md text-base font-medium text-slate-300 hover:text-brand-600 hover:bg-slate-950">Acerca
+                    de Mí</a>
+                <a href="#projects"
+                    class="block px-3 py-3 rounded-md text-base font-medium text-slate-300 hover:text-brand-600 hover:bg-slate-950">Proyectos</a>
+                <a href="#skills"
+                    class="block px-3 py-3 rounded-md text-base font-medium text-slate-300 hover:text-brand-600 hover:bg-slate-950">Habilidades</a>
+                <a href="#experience"
+                    class="block px-3 py-3 rounded-md text-base font-medium text-slate-300 hover:text-brand-600 hover:bg-slate-950">Experiencia</a>
+                <a href="#education"
+                    class="block px-3 py-3 rounded-md text-base font-medium text-slate-300 hover:text-brand-600 hover:bg-slate-950">Formación</a>
+                <a href="#contact"
+                    class="block px-3 py-3 mt-4 rounded-md text-base font-medium bg-slate-900 text-white text-center hover:bg-brand-600">Hablemos</a>
             </div>
         </div>
     </nav>
 
-    <header class="bg-gradient-to-r from-gray-900 to-gray-700 text-white pt-24 pb-32">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <!-- Profile Image -->
-            <img src="https://i.ibb.co/cKbDKWSs/Imagen-de-Whats-App-2025-05-25-a-las-17-02-03-be2a9cef.jpg" alt="Foto Profesional de Carlos Muriel" class="w-36 h-36 rounded-full mx-auto mb-6 border-4 border-white shadow-lg object-cover" onerror="this.onerror=null; this.src='https://placehold.co/150x150/E2E8F0/4A5568?text=Error+Img'; this.alt='Error al cargar la imagen';">
+    <!-- Hero Section -->
+    <header class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden bg-grid">
+        <!-- Ambient animated blobs -->
+        <div
+            class="absolute top-20 left-10 w-72 h-72 bg-purple-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob">
+        </div>
+        <div class="absolute top-40 right-10 w-72 h-72 bg-blue-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"
+            style="animation-delay: 2s;"></div>
+        <div class="absolute -bottom-8 left-1/2 w-72 h-72 bg-cyan-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"
+            style="animation-delay: 4s;"></div>
 
-            <!-- Title and Subtitle -->
-            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold mb-4">Carlos Andrés Muriel Taborda</h1>
-            <h2 class="text-xl sm:text-2xl lg:text-3xl font-medium mb-6">Tecnólogo Industrial | Análisis de Datos y Business Intelligence</h2>
-            <p class="max-w-3xl mx-auto text-lg text-gray-200 mb-8">
-                Transformando datos en decisiones estratégicas mediante Excel Avanzado, Power BI y SQL. Experiencia comprobada en optimización de procesos y análisis de información en áreas administrativas.
+
+        <!-- Dynamic Data Graphics Background -->
+        <div class="absolute inset-0 z-0 pointer-events-none overflow-hidden opacity-30">
+            <!-- Line Chart SVG -->
+            <svg class="absolute top-1/4 left-10 w-64 h-32 text-brand-500 opacity-50 animate-float" viewBox="0 0 100 50"
+                fill="none" stroke="currentColor" stroke-width="2">
+                <path class="chart-line" d="M0,40 L20,30 L40,35 L60,15 L80,25 L100,5" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                <circle cx="20" cy="30" r="1.5" fill="currentColor" class="animate-pulse" />
+                <circle cx="40" cy="35" r="1.5" fill="currentColor" class="animate-pulse" />
+                <circle cx="60" cy="15" r="1.5" fill="currentColor" class="animate-pulse" />
+                <circle cx="80" cy="25" r="1.5" fill="currentColor" class="animate-pulse" />
+                <circle cx="100" cy="5" r="1.5" fill="currentColor" class="animate-pulse" />
+            </svg>
+
+            <!-- Bar Chart SVG -->
+            <svg class="absolute bottom-20 right-20 w-48 h-48 text-purple-500 opacity-40" viewBox="0 0 100 100"
+                fill="currentColor">
+                <rect x="10" y="60" width="10" height="40" class="bar-animate" style="animation-delay: 0s" />
+                <rect x="30" y="40" width="10" height="60" class="bar-animate" style="animation-delay: 0.5s" />
+                <rect x="50" y="20" width="10" height="80" class="bar-animate" style="animation-delay: 1s" />
+                <rect x="70" y="50" width="10" height="50" class="bar-animate" style="animation-delay: 1.5s" />
+            </svg>
+
+            <!-- Tech Nodes Scatter -->
+            <div class="absolute top-1/3 right-1/4 w-32 h-32 text-cyan-500 opacity-40 animate-pulse-slow">
+                <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1">
+                    <circle cx="50" cy="50" r="40" stroke-dasharray="4 4" />
+                    <circle cx="50" cy="50" r="20" stroke-dasharray="2 2" />
+                    <circle cx="50" cy="10" r="3" fill="currentColor" />
+                    <circle cx="90" cy="50" r="3" fill="currentColor" />
+                    <circle cx="50" cy="90" r="3" fill="currentColor" />
+                    <circle cx="10" cy="50" r="3" fill="currentColor" />
+                    <path d="M50,10 L90,50 L50,90 L10,50 Z" stroke-opacity="0.5" />
+                </svg>
+            </div>
+        </div>
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center z-10 reveal">
+
+
+            <!-- Profile Image -->
+            <div class="relative inline-block mb-8">
+                <div
+                    class="absolute inset-0 bg-gradient-to-tr from-brand-600 to-purple-500 rounded-full blur-md opacity-60">
+                </div>
+                <img src="https://i.ibb.co/cKbDKWSs/Imagen-de-Whats-App-2025-05-25-a-las-17-02-03-be2a9cef.jpg"
+                    alt="Foto Carlos Muriel"
+                    class="relative w-40 h-40 rounded-full mx-auto border-4 border-white shadow-xl object-cover">
+            </div>
+
+            <!-- Titles -->
+            <p class="text-slate-400 font-semibold tracking-wide uppercase text-sm mb-3">Tecnólogo Industrial & Data
+                Analyst</p>
+            <h1 class="text-5xl sm:text-6xl lg:text-7xl font-extrabold text-white tracking-tight leading-tight mb-4">
+                Carlos Andrés <br class="hidden sm:block" />
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-600 to-cyan-500">Muriel
+                    Taborda</span>
+            </h1>
+
+            <p class="max-w-2xl mx-auto text-lg sm:text-xl text-slate-400 mb-10 leading-relaxed">
+                Transformando datos en <strong class="text-white font-semibold">decisiones estratégicas</strong>
+                mediante Excel Avanzado, Power BI y SQL.
             </p>
-            <!-- Call-to-action buttons and social link -->
-            <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-4">
-                <a href="#projects" class="bg-white text-gray-800 font-bold py-3 px-6 rounded-lg shadow-md hover:bg-gray-200 w-full sm:w-auto text-center">
-                    Ver Mis Proyectos
+
+            <!-- CTA Buttons -->
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+                <a href="#projects"
+                    class="w-full sm:w-auto px-8 py-4 bg-slate-900 text-white rounded-full font-semibold hover:bg-brand-600 transition-all duration-300 shadow-lg hover:shadow-brand-500/25 hover:-translate-y-1">
+                    Ver Proyectos
                 </a>
-                <a href="#contact" class="bg-transparent border-2 border-white text-white font-bold py-3 px-6 rounded-lg hover:bg-white hover:text-gray-800 w-full sm:w-auto text-center">
+                <a href="#contact"
+                    class="w-full sm:w-auto px-8 py-4 bg-slate-900 text-white border border-slate-800 rounded-full font-semibold hover:border-slate-300 hover:bg-slate-950 transition-all duration-300 shadow-sm hover:shadow hover:-translate-y-1">
                     Contactar
                 </a>
-                <a href="https://www.linkedin.com/in/carlos-andr%C3%A9s-muriel-taborda-5a0467322/" target="_blank" rel="noopener noreferrer" class="inline-block bg-white text-gray-700 p-3 rounded-full shadow-md hover:bg-gray-200" aria-label="LinkedIn Profile">
+
+                <!-- LinkedIn Icon -->
+                <a href="https://www.linkedin.com/in/carlos-andr%C3%A9s-muriel-5a0467322/" target="_blank"
+                    rel="noopener noreferrer"
+                    class="w-14 h-14 flex items-center justify-center bg-slate-900 text-slate-300 border border-slate-800 rounded-full hover:text-brand-600 hover:border-slate-600 shadow-sm transition-all duration-300 hover:-translate-y-1 ml-0 sm:ml-2">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.59-11.018-3.714v-2.155z"/>
+                        <path
+                            d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.59-11.018-3.714v-2.155z" />
                     </svg>
                 </a>
             </div>
@@ -99,87 +320,170 @@
 
     <main>
         <!-- About Section -->
-        <section id="about" class="py-16 lg:py-24 bg-white">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 class="text-3xl font-bold text-center mb-12 text-gray-900">Acerca de Mí</h2>
-                <div class="max-w-3xl mx-auto text-lg text-gray-700 space-y-6 text-center">
+        <section id="about" class="py-24 bg-slate-900">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center reveal">
+                <h2 class="text-3xl sm:text-4xl font-bold text-white mb-8">Acerca de Mí</h2>
+                <div class="text-lg text-slate-400 leading-relaxed space-y-6">
                     <p>
-                        Tecnólogo Industrial apasionado por la <strong class="font-semibold">interpretación de datos</strong> para impulsar el éxito organizacional. Combino mi sólida formación técnica con habilidades analíticas prácticas en <strong class="font-semibold">Excel (Power Query, Power Pivot, DAX), Power BI y SQL</strong>.
+                        Tecnólogo Industrial con <span class="text-brand-600 font-semibold bg-brand-900/40 px-2 py-1 rounded-md">enfoque en el análisis e interpretación de datos</span> para apoyar la toma de decisiones y la optimización de procesos. Me caracterizo por combinar pensamiento analítico con una visión práctica del negocio, identificando <strong class="text-white font-semibold">patrones y oportunidades de mejora</strong> a partir de la información.
                     </p>
                     <p>
-                        Me caracterizo por mi <strong class="font-semibold">perseverancia, responsabilidad y enfoque en resultados</strong>, con capacidad demostrada para el <strong class="font-semibold">trabajo en equipo</strong> y una rápida <strong class="font-semibold">adaptación</strong> a nuevos desafíos y tecnologías. Mi objetivo es aplicar mi pasión por el análisis de datos para <strong class="font-semibold">optimizar procesos y generar valor tangible</strong> en entornos dinámicos.
+                        Tengo experiencia trabajando con herramientas como <span class="text-brand-600 font-semibold bg-brand-900/40 px-2 py-1 rounded-md">Excel avanzado y Power BI</span>, así como en el manejo y organización de bases de datos para la elaboración de reportes y análisis de información. He participado en el seguimiento y análisis de <strong class="text-white font-semibold">indicadores (KPIs)</strong> que permiten comprender el desempeño de procesos operativos y comerciales.
+                    </p>
+                    <p>
+                        Me destaco por mi <strong class="text-white font-semibold">capacidad de aprendizaje rápido</strong>, adaptación a nuevos entornos y búsqueda constante de soluciones basadas en datos, analizando la información disponible para identificar oportunidades de mejora y apoyar la <span class="text-brand-600 font-semibold">resolución de problemas en los procesos</span>.
                     </p>
                 </div>
             </div>
         </section>
 
         <!-- Projects Section -->
-        <section id="projects" class="py-16 lg:py-24 bg-gray-100">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 class="text-3xl font-bold text-center mb-16 text-gray-900">Proyectos Destacados</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
-                    <!-- Project 1 -->
-                    <div class="bg-white rounded-lg shadow-lg overflow-hidden flex flex-col">
-                        <img src="https://i.ibb.co/4gRKMD9z/Captura-de-pantalla-2025-05-04-180250.png" alt="Vista previa del proyecto Análisis de Ventas" class="w-full h-48 object-cover" onerror="this.onerror=null; this.src='https://placehold.co/600x400/E0E7FF/374151?text=Error+Imagen'; this.alt='Error al cargar la imagen';">
-                        <div class="p-6 flex flex-col flex-grow">
-                            <h3 class="text-xl font-semibold mb-3 text-gray-900">Análisis Interactivo de Ventas (Tienda Deportiva)</h3>
-                            <p class="text-gray-600 mb-2"><strong class="font-medium">Reto:</strong> Comprender a fondo el rendimiento de ventas y devoluciones para guiar decisiones estratégicas.</p>
-                            <p class="text-gray-600 mb-4"><strong class="font-medium">Acción:</strong> Desarrollé un dashboard en Power BI desglosando ventas por demografía, geografía, categoría y comparativa anual.</p>
-                            <p class="text-gray-600 mb-4"><strong class="font-medium">Impacto:</strong> Facilitó una visión clara del rendimiento, permitiendo la toma de decisiones basadas en datos.</p>
-                            <div class="mt-auto pt-4 text-center">
-                                <a href="https://app.powerbi.com/view?r=eyJrIjoiZTBkZjkwZGMtYWI3Yy00MTc5LWEwMTgtYzVlYWNmNTdmZWU4IiwidCI6IjM4ZjY4YzMyLWQxZWYtNDY4Zi04MzdjLTMzZTA0NjA3YmQyOSIsImMiOjR9" target="_blank" rel="noopener noreferrer" class="inline-block bg-gray-800 text-white font-medium py-2 px-4 rounded-lg hover:bg-gray-900">
-                                    Ver Dashboard en Power BI
-                                </a>
+        <section id="projects" class="py-24 bg-slate-950 relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 reveal">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl sm:text-4xl font-bold text-white mb-4">Proyectos Destacados</h2>
+                    <p class="text-slate-400 max-w-2xl mx-auto">Dashboards interactivos y reportes analíticos creados
+                        para resolver problemas reales del negocio.</p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+
+                    <!-- Proyecto 1 -->
+                    <div
+                        class="group bg-slate-900 rounded-3xl overflow-hidden glass shadow-sm hover:shadow-2xl hover:shadow-brand-500/10 transition-all duration-500 border border-slate-800 hover:-translate-y-2 flex flex-col">
+                        <div class="relative h-64 overflow-hidden bg-slate-100">
+                            <img src="https://i.ibb.co/4gRKMD9z/Captura-de-pantalla-2025-05-04-180250.png"
+                                alt="Análisis de Ventas"
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                            <div class="absolute top-4 left-4 flex gap-2">
+                                <span
+                                    class="px-3 py-1 bg-yellow-400/90 backdrop-blur text-yellow-900 text-xs font-bold rounded-full">Power
+                                    BI</span>
                             </div>
+                        </div>
+                        <div class="p-8 flex flex-col flex-grow">
+                            <h3 class="text-2xl font-bold text-white mb-3 group-hover:text-brand-600 transition-colors">
+                                Ventas Deportivas</h3>
+                            <div class="space-y-3 text-slate-400 flex-grow">
+                                <p><strong class="text-white text-sm tracking-wide">RETO:</strong> Comprender a fondo el
+                                    rendimiento de ventas y devoluciones.</p>
+                                <p><strong class="text-white text-sm tracking-wide">ACCIÓN:</strong> Desarrollé un
+                                    dashboard desglosando ventas por demografía, geografía y categoría.</p>
+                            </div>
+                            <a href="https://app.powerbi.com/view?r=eyJrIjoiZTBkZjkwZGMtYWI3Yy00MTc5LWEwMTgtYzVlYWNmNTdmZWU4IiwidCI6IjM4ZjY4YzMyLWQxZWYtNDY4Zi04MzdjLTMzZTA0NjA3YmQyOSIsImMiOjR9"
+                                target="_blank"
+                                class="mt-6 inline-flex items-center justify-center w-full bg-brand-600 text-white font-semibold py-3 px-4 rounded-xl hover:bg-brand-600 hover:shadow-lg hover:shadow-brand-500/40 transition-all duration-300">
+                                Ver Dashboard en vivo
+                                <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14">
+                                    </path>
+                                </svg>
+                            </a>
                         </div>
                     </div>
 
-                    <!-- Project 2 -->
-                    <div class="bg-white rounded-lg shadow-lg overflow-hidden flex flex-col">
-                        <img src="https://i.ibb.co/MxNF4mfK/Captura-de-pantalla-2025-05-04-180604.png" alt="Vista previa del proyecto Análisis de Producción" class="w-full h-48 object-cover" onerror="this.onerror=null; this.src='https://placehold.co/600x400/D1FAE5/1F2937?text=Error+Imagen'; this.alt='Error al cargar la imagen';">
-                        <div class="p-6 flex flex-col flex-grow">
-                            <h3 class="text-xl font-semibold mb-3 text-gray-900">Análisis de Rendimiento (Producción Textil)</h3>
-                            <p class="text-gray-600 mb-2"><strong class="font-medium">Reto:</strong> Analizar la producción, gastos e ingresos para identificar eficiencias.</p>
-                            <p class="text-gray-600 mb-4"><strong class="font-medium">Acción:</strong> Creé un análisis en Power BI integrando producción, finanzas y KPIs de cumplimiento.</p>
-                            <p class="text-gray-600 mb-4"><strong class="font-medium">Impacto:</strong> Proporcionó una visión integral que facilitó la toma de decisiones informadas para la gestión.</p>
-                            <div class="mt-auto pt-4 text-center">
-                                <a href="https://app.powerbi.com/view?r=eyJrIjoiZmY5YWUxMWUtOWQxNS00MDlmLThiODQtNzgwNmFkOGY2MzlhIiwidCI6IjM4ZjY4YzMyLWQxZWYtNDY4Zi04MzdjLTMzZTA0NjA3YmQyOSIsImMiOjR9" target="_blank" rel="noopener noreferrer" class="inline-block bg-gray-800 text-white font-medium py-2 px-4 rounded-lg hover:bg-gray-900">
-                                    Ver Dashboard en Power BI
-                                </a>
+                    <!-- Proyecto 2 -->
+                    <div
+                        class="group bg-slate-900 rounded-3xl overflow-hidden glass shadow-sm hover:shadow-2xl hover:shadow-brand-500/10 transition-all duration-500 border border-slate-800 hover:-translate-y-2 flex flex-col">
+                        <div class="relative h-64 overflow-hidden bg-slate-100">
+                            <img src="https://i.ibb.co/MxNF4mfK/Captura-de-pantalla-2025-05-04-180604.png"
+                                alt="Análisis Producción"
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                            <div class="absolute top-4 left-4 flex gap-2">
+                                <span
+                                    class="px-3 py-1 bg-yellow-400/90 backdrop-blur text-yellow-900 text-xs font-bold rounded-full">Power
+                                    BI</span>
                             </div>
+                        </div>
+                        <div class="p-8 flex flex-col flex-grow">
+                            <h3 class="text-2xl font-bold text-white mb-3 group-hover:text-brand-600 transition-colors">
+                                Rendimiento Textil</h3>
+                            <div class="space-y-3 text-slate-400 flex-grow">
+                                <p><strong class="text-white text-sm tracking-wide">RETO:</strong> Analizar la
+                                    producción e ingresos para identificar eficiencias.</p>
+                                <p><strong class="text-white text-sm tracking-wide">ACCIÓN:</strong> Integración de
+                                    producción, finanzas y KPIs de cumplimiento en Power BI.</p>
+                            </div>
+                            <a href="https://app.powerbi.com/view?r=eyJrIjoiZmY5YWUxMWUtOWQxNS00MDlmLThiODQtNzgwNmFkOGY2MzlhIiwidCI6IjM4ZjY4YzMyLWQxZWYtNDY4Zi04MzdjLTMzZTA0NjA3YmQyOSIsImMiOjR9"
+                                target="_blank"
+                                class="mt-6 inline-flex items-center justify-center w-full bg-brand-600 text-white font-semibold py-3 px-4 rounded-xl hover:bg-brand-600 hover:shadow-lg hover:shadow-brand-500/40 transition-all duration-300">
+                                Ver Dashboard en vivo
+                                <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14">
+                                    </path>
+                                </svg>
+                            </a>
                         </div>
                     </div>
 
-                    <!-- Project 3 -->
-                    <div class="bg-white rounded-lg shadow-lg overflow-hidden flex flex-col">
-                        <img src="https://i.ibb.co/Mkch3b2r/Captura-de-pantalla-2024-07-07-151501.png" alt="Vista previa del proyecto Análisis Comercial" class="w-full h-48 object-cover" onerror="this.onerror=null; this.src='https://placehold.co/600x400/FEF3C7/92400E?text=Error+Imagen'; this.alt='Error al cargar la imagen';">
-                        <div class="p-6 flex flex-col flex-grow">
-                            <h3 class="text-xl font-semibold mb-3 text-gray-900">Análisis Comercial (Ventas de Vehículos)</h3>
-                            <p class="text-gray-600 mb-2"><strong class="font-medium">Reto:</strong> Evaluar el rendimiento de ventas, vendedores y cumplimiento de metas.</p>
-                            <p class="text-gray-600 mb-4"><strong class="font-medium">Acción:</strong> Utilicé Excel (Power Query, Power Pivot, DAX) para analizar ventas, comparar rendimiento mensual/vendedor e identificar concesionarios destacados.</p>
-                            <p class="text-gray-600 mb-4"><strong class="font-medium">Impacto:</strong> Generé un reporte detallado que facilitó el seguimiento de metas y la toma de decisiones gerenciales.</p>
-                            <p class="text-sm text-gray-600 mt-2"><strong class="font-semibold">Nota:</strong> Para una mejor comprensión de la información, descargar el reporte y abrirlo.</p>
-                            <div class="mt-auto pt-4 text-center">
-                                <a href="https://elpolieduco-my.sharepoint.com/:x:/g/personal/carlos_muriel06151_elpoli_edu_co/EZ7u9PkUIZtPj997cw3nvmkBA8bgpBB0SuaoNipmFkmuLQ?rtime=mIAticF-3Ug" target="_blank" rel="noopener noreferrer" class="inline-block bg-gray-800 text-white font-medium py-2 px-4 rounded-lg hover:bg-gray-900">
-                                    Ver Reporte en Excel
-                                </a>
+                    <!-- Proyecto 3 -->
+                    <div
+                        class="group bg-slate-900 rounded-3xl overflow-hidden glass shadow-sm hover:shadow-2xl hover:shadow-brand-500/10 transition-all duration-500 border border-slate-800 hover:-translate-y-2 flex flex-col">
+                        <div class="relative h-64 overflow-hidden bg-slate-100">
+                            <img src="https://i.ibb.co/Mkch3b2r/Captura-de-pantalla-2024-07-07-151501.png"
+                                alt="Análisis Comercial"
+                                class="w-full h-full object-cover top-0 object-top group-hover:scale-105 transition-transform duration-700">
+                            <div class="absolute top-4 left-4 flex gap-2">
+                                <span
+                                    class="px-3 py-1 bg-green-500/90 backdrop-blur text-white text-xs font-bold rounded-full">Excel
+                                    Avanzado</span>
                             </div>
+                        </div>
+                        <div class="p-8 flex flex-col flex-grow">
+                            <h3 class="text-2xl font-bold text-white mb-3 group-hover:text-brand-600 transition-colors">
+                                Análisis Comercial de Vehículos</h3>
+                            <div class="space-y-3 text-slate-400 flex-grow">
+                                <p><strong class="text-white text-sm tracking-wide">RETO:</strong> Evaluar métricas de
+                                    ventas y cumplimiento de metas de concesionarios.</p>
+                                <p><strong class="text-white text-sm tracking-wide">ACCIÓN:</strong> Power Query, Power
+                                    Pivot y DAX para comparar rendimiento histórico mensual.</p>
+                            </div>
+                            <a href="https://elpolieduco-my.sharepoint.com/:x:/g/personal/carlos_muriel06151_elpoli_edu_co/EZ7u9PkUIZtPj997cw3nvmkBA8bgpBB0SuaoNipmFkmuLQ?rtime=mIAticF-3Ug"
+                                target="_blank"
+                                class="mt-6 inline-flex items-center justify-center w-full bg-green-600 text-white font-semibold py-3 px-4 rounded-xl hover:bg-green-500 hover:shadow-lg hover:shadow-green-500/40 transition-all duration-300">
+                                Descargar Reporte (Excel)
+                                <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+                                </svg>
+                            </a>
                         </div>
                     </div>
 
-                    <!-- Project 4 -->
-                    <div class="bg-white rounded-lg shadow-lg overflow-hidden flex flex-col">
-                        <img src="https://i.ibb.co/b5Pd5DHg/Captura-de-pantalla-2025-05-04-180801.png" alt="Vista previa del proyecto Análisis Logístico" class="w-full h-48 object-cover" onerror="this.onerror=null; this.src='https://placehold.co/600x400/BFDBFE/1E3A8A?text=Error+Imagen'; this.alt='Error al cargar la imagen';">
-                        <div class="p-6 flex flex-col flex-grow">
-                            <h3 class="text-xl font-semibold mb-3 text-gray-900">Análisis Logístico (Distribución)</h3>
-                            <p class="text-gray-600 mb-2"><strong class="font-medium">Reto:</strong> Analizar detalladamente el desempeño logístico en el proceso de distribución.</p>
-                            <p class="text-gray-600 mb-4"><strong class="font-medium">Acción:</strong> Destaqué KPIs (pedidos, valor, días entrega, puntualidad), incluí indicadores de cumplimiento y evolución mensual de pedidos/distancia.</p>
-                            <p class="text-gray-600 mb-4"><strong class="font-medium">Impacto:</strong> Herramienta valiosa para evaluar rendimiento, realizar ajustes estratégicos y mejorar eficiencia en entrega/distribución.</p>
-                            <div class="mt-auto pt-4 text-center">
-                                <a href="https://app.powerbi.com/view?r=eyJrIjoiNDE0ZWFiYzUtOTk3ZC00Nzg4LTg3ODItNzExZTc0NWI4NDYzIiwidCI6IjM4ZjY4YzMyLWQxZWYtNDY4Zi04MzdjLTMzZTA0NjA3YmQyOSIsImMiOjR9" target="_blank" rel="noopener noreferrer" class="inline-block bg-gray-800 text-white font-medium py-2 px-4 rounded-lg hover:bg-gray-900">
-                                    Ver Dashboard en Power BI
-                                </a>
+                    <!-- Proyecto 4 -->
+                    <div
+                        class="group bg-slate-900 rounded-3xl overflow-hidden glass shadow-sm hover:shadow-2xl hover:shadow-brand-500/10 transition-all duration-500 border border-slate-800 hover:-translate-y-2 flex flex-col">
+                        <div class="relative h-64 overflow-hidden bg-slate-100">
+                            <img src="https://i.ibb.co/b5Pd5DHg/Captura-de-pantalla-2025-05-04-180801.png"
+                                alt="Análisis Logístico"
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                            <div class="absolute top-4 left-4 flex gap-2">
+                                <span
+                                    class="px-3 py-1 bg-yellow-400/90 backdrop-blur text-yellow-900 text-xs font-bold rounded-full">Power
+                                    BI</span>
                             </div>
+                        </div>
+                        <div class="p-8 flex flex-col flex-grow">
+                            <h3 class="text-2xl font-bold text-white mb-3 group-hover:text-brand-600 transition-colors">
+                                Logística de Distribución</h3>
+                            <div class="space-y-3 text-slate-400 flex-grow">
+                                <p><strong class="text-white text-sm tracking-wide">RETO:</strong> Analizar el desempeño
+                                    logístico en entregas.</p>
+                                <p><strong class="text-white text-sm tracking-wide">ACCIÓN:</strong> Monitoreo de KPIs
+                                    de puntualidad, días de entrega y evolución geográfica.</p>
+                            </div>
+                            <a href="https://app.powerbi.com/view?r=eyJrIjoiNDE0ZWFiYzUtOTk3ZC00Nzg4LTg3ODItNzExZTc0NWI4NDYzIiwidCI6IjM4ZjY4YzMyLWQxZWYtNDY4Zi04MzdjLTMzZTA0NjA3YmQyOSIsImMiOjR9"
+                                target="_blank"
+                                class="mt-6 inline-flex items-center justify-center w-full bg-brand-600 text-white font-semibold py-3 px-4 rounded-xl hover:bg-brand-600 hover:shadow-lg hover:shadow-brand-500/40 transition-all duration-300">
+                                Ver Dashboard en vivo
+                                <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14">
+                                    </path>
+                                </svg>
+                            </a>
                         </div>
                     </div>
 
@@ -188,190 +492,470 @@
         </section>
 
         <!-- Skills Section -->
-        <section id="skills" class="py-16 lg:py-24 bg-white">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                <h2 class="text-3xl font-bold mb-16 text-gray-900">Habilidades Clave</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 text-left">
-                    <div class="flex flex-col items-center sm:items-start">
-                        <h3 class="text-xl font-semibold mb-4 text-gray-800">Análisis de Datos y BI</h3>
-                        <ul class="space-y-2">
-                            <li class="flex items-center"><span class="inline-block h-2 w-2 bg-gray-600 rounded-full mr-2"></span>Excel Avanzado (Power Query, Power Pivot, DAX)</li>
-                            <li class="flex items-center"><span class="inline-block h-2 w-2 bg-gray-600 rounded-full mr-2"></span>Power BI (Dashboards, Modelado, DAX)</li>
-                            <li class="flex items-center"><span class="inline-block h-2 w-2 bg-gray-600 rounded-full mr-2"></span>SQL (Consultas, Gestión BBDD)</li>
+        <section id="skills" class="py-24 bg-slate-900">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 reveal">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl sm:text-4xl font-bold text-white">Habilidades Clave</h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+                    <!-- Card 1 -->
+                    <div class="p-8 rounded-3xl bg-slate-950 border border-slate-800 hover:shadow-lg transition-shadow">
+                        <div class="w-12 h-12 rounded-xl bg-brand-100 flex items-center justify-center mb-6">
+                            <svg class="w-6 h-6 text-brand-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z">
+                                </path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-4">Data & BI</h3>
+                        <ul class="space-y-3 text-slate-400">
+                            <li class="flex items-center"><span
+                                    class="w-2 h-2 bg-brand-900/400 rounded-full mr-3"></span>Excel Avanzado (DAX, Power
+                                Query)</li>
+                            <li class="flex items-center"><span
+                                    class="w-2 h-2 bg-brand-900/400 rounded-full mr-3"></span>Power BI (Modelado,
+                                Dashboards)</li>
+                            <li class="flex items-center"><span
+                                    class="w-2 h-2 bg-brand-900/400 rounded-full mr-3"></span>SQL Integrado</li>
                         </ul>
                     </div>
-                    <div class="flex flex-col items-center sm:items-start">
-                        <h3 class="text-xl font-semibold mb-4 text-gray-800">Automatización y ERP</h3>
-                        <ul class="space-y-2">
-                            <li class="flex items-center"><span class="inline-block h-2 w-2 bg-gray-500 rounded-full mr-2"></span>Power Automate</li>
-                            <li class="flex items-center"><span class="inline-block h-2 w-2 bg-gray-500 rounded-full mr-2"></span>Power Apps</li>
-                            <li class="flex items-center"><span class="inline-block h-2 w-2 bg-gray-500 rounded-full mr-2"></span>Bizagi</li>
-                            <li class="flex items-center"><span class="inline-block h-2 w-2 bg-gray-500 rounded-full mr-2"></span>SAP</li>
+
+                    <!-- Card 2 -->
+                    <div class="p-8 rounded-3xl bg-slate-950 border border-slate-800 hover:shadow-lg transition-shadow">
+                        <div class="w-12 h-12 rounded-xl bg-purple-100 flex items-center justify-center mb-6">
+                            <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z">
+                                </path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-4">Herramientas ERP</h3>
+                        <ul class="space-y-3 text-slate-400">
+                            <li class="flex items-center"><span
+                                    class="w-2 h-2 bg-brand-600 rounded-full mr-3"></span>Power Automate & Apps</li>
+                            <li class="flex items-center"><span
+                                    class="w-2 h-2 bg-brand-600 rounded-full mr-3"></span>Bizagi</li>
+                            <li class="flex items-center"><span
+                                    class="w-2 h-2 bg-brand-600 rounded-full mr-3"></span>SAP</li>
                         </ul>
                     </div>
-                    <div class="flex flex-col items-center sm:items-start">
-                        <h3 class="text-xl font-semibold mb-4 text-gray-800">Competencias Profesionales</h3>
-                        <div class="flex flex-wrap justify-center sm:justify-start gap-2">
-                            <span class="bg-gray-200 text-gray-700 px-3 py-1 rounded-full text-sm">Análisis de Datos</span>
-                            <span class="bg-gray-200 text-gray-700 px-3 py-1 rounded-full text-sm">Resolución de Problemas</span>
-                            <span class="bg-gray-200 text-gray-700 px-3 py-1 rounded-full text-sm">Comunicación Asertiva</span>
-                            <span class="bg-gray-200 text-gray-700 px-3 py-1 rounded-full text-sm">Trabajo en Equipo</span>
-                            <span class="bg-gray-200 text-gray-700 px-3 py-1 rounded-full text-sm">Adaptabilidad</span>
-                            <span class="bg-gray-200 text-gray-700 px-3 py-1 rounded-full text-sm">Gestión del Tiempo</span>
-                            <span class="bg-gray-200 text-gray-700 px-3 py-1 rounded-full text-sm">Creatividad</span>
+
+                    <!-- Card 3 -->
+                    <div class="p-8 rounded-3xl bg-slate-950 border border-slate-800 hover:shadow-lg transition-shadow">
+                        <div class="w-12 h-12 rounded-xl bg-cyan-100 flex items-center justify-center mb-6">
+                            <svg class="w-6 h-6 text-cyan-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-4">Competencias Profesionales</h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span
+                                class="bg-slate-900 border border-slate-700 text-slate-300 text-sm font-medium px-3 py-1 rounded-full shadow-sm">Análisis
+                                de Datos</span>
+                            <span
+                                class="bg-slate-900 border border-slate-700 text-slate-300 text-sm font-medium px-3 py-1 rounded-full shadow-sm">Resolución
+                                de Problemas</span>
+                            <span
+                                class="bg-slate-900 border border-slate-700 text-slate-300 text-sm font-medium px-3 py-1 rounded-full shadow-sm">Comunicación
+                                Asertiva</span>
+                            <span
+                                class="bg-slate-900 border border-slate-700 text-slate-300 text-sm font-medium px-3 py-1 rounded-full shadow-sm">Trabajo
+                                en Equipo</span>
+                            <span
+                                class="bg-slate-900 border border-slate-700 text-slate-300 text-sm font-medium px-3 py-1 rounded-full shadow-sm">Adaptabilidad</span>
+                            <span
+                                class="bg-slate-900 border border-slate-700 text-slate-300 text-sm font-medium px-3 py-1 rounded-full shadow-sm">Gestión
+                                del Tiempo</span>
+                            <span
+                                class="bg-slate-900 border border-slate-700 text-slate-300 text-sm font-medium px-3 py-1 rounded-full shadow-sm">Creatividad</span>
                         </div>
                     </div>
+
                 </div>
             </div>
         </section>
 
-        <!-- Experience Section -->
-        <section id="experience" class="py-16 lg:py-24 bg-gray-100">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 class="text-3xl font-bold text-center mb-16 text-gray-900">Experiencia Profesional</h2>
-                <div class="space-y-12 max-w-4xl mx-auto">
-                    <!-- Job 1 -->
-                    <div class="flex flex-col sm:flex-row items-center sm:items-start space-y-4 sm:space-y-0 sm:space-x-6">
-                        <img src="https://i.ibb.co/FQT0TXC/OIP.jpg" alt="Logo Americas BPS" class="w-16 h-16 rounded-full object-contain border-2 border-gray-300 flex-shrink-0" onerror="this.onerror=null; this.src='https://placehold.co/64x64/cccccc/969696?text=Logo'; this.alt='Logo Americas BPS';">
-                        <div class="flex-grow text-center sm:text-left">
-                            <p class="text-sm text-gray-500 mb-1">Sep 2024 – Feb 2026</p>
-                            <h3 class="text-xl font-semibold text-gray-900">Sale support</h3>
-                            <p class="text-lg text-gray-700 mb-2">Americas BPS – (HP) | Medellín</p>
-                            <ul class="list-disc list-inside text-gray-600 space-y-1 text-sm sm:text-base text-left">
-                                <li>Proporcioné soporte analítico financiero para la toma de decisiones comerciales relacionadas con la venta de productos, mediante el uso de Excel y Power BI, contribuyendo a mejorar la precisión del análisis en aproximadamente 1%.</li>
-                                <li>Actué como punto de enlace de información entre el área comercial y operativa, garantizando la disponibilidad y confiabilidad de los datos, lo que permitió reducir inconsistencias en reportes.</li>
-                                <li>Diseñé y desarrollé reportes dinámicos en Power BI para el análisis trimestral del desempeño comercial, facilitando la identificación de tendencias y oportunidades de mejora, optimizando los tiempos de análisis en un 3%.</li>
-                                <li>Optimicé la gestión de tareas y responsabilidades mediante la priorización y análisis estructurado de la información, mejorando la eficiencia operativa diaria.</li>
-                                <li>Realicé análisis periódicos de inventario y ventas semanales, apoyando el seguimiento del desempeño comercial y contribuyendo a una mejora cercana al 2% en la precisión del control de información.</li>
-                            </ul>
+        <!-- Experience Timeline Section -->
+        <section id="experience" class="py-24 bg-slate-950 relative">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 reveal">
+                <h2 class="text-3xl sm:text-4xl font-bold text-center mb-16 text-white">Trayectoria Profesional</h2>
+
+                <div
+                    class="space-y-12 relative before:absolute before:inset-0 before:left-8 sm:before:left-1/2 before:-ml-px before:h-full before:w-0.5 before:bg-slate-800">
+
+                    <!-- Empleo 1 -->
+                    <div class="relative flex flex-col sm:flex-row items-center justify-between w-full group">
+                        <div class="order-1 hidden sm:block sm:w-[47%] text-right pr-8">
+                            <p class="text-slate-400 font-medium tracking-wide text-sm">Sep 2024 – Feb 2026</p>
+                        </div>
+                        <div
+                            class="z-10 flex items-center order-1 w-20 h-20 bg-slate-900 shadow-lg rounded-full border-4 border-slate-800 justify-center absolute left-0 sm:left-1/2 transform sm:-translate-x-1/2">
+                            <img src="https://i.ibb.co/FQT0TXC/OIP.jpg" alt="HP Logo"
+                                class="w-16 h-16 rounded-full object-contain">
+                        </div>
+                        <div class="order-1 w-full pl-20 sm:pl-0 sm:w-[47%] text-left sm:pl-8">
+                            <div
+                                class="bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-800 group-hover:shadow-md transition-shadow">
+                                <p class="text-brand-600 font-semibold text-sm mb-1 sm:hidden">Sep 2024 – Feb 2026</p>
+                                <h3 class="font-bold text-xl text-white pb-1">Americas BPS – (HP) | Medellín</h3>
+                                <p class="text-sm text-brand-400 font-medium mb-4">Sale support</p>
+                                <ul class="list-disc list-outside ml-4 text-sm text-slate-400 space-y-2">
+                                    <li>Proporcioné soporte analítico financiero para la toma de decisiones comerciales
+                                        relacionadas con la venta de productos, mediante el uso de Excel y Power BI,
+                                        contribuyendo a mejorar la precisión del análisis en aproximadamente 1%.</li>
+                                    <li>Actué como punto de enlace de información entre el área comercial y operativa,
+                                        garantizando la disponibilidad y confiabilidad de los datos, lo que permitió
+                                        reducir inconsistencias en reportes.</li>
+                                    <li>Diseñé y desarrollé reportes dinámicos en Power BI para el análisis trimestral
+                                        del desempeño comercial, facilitando la identificación de tendencias y
+                                        oportunidades de mejora, optimizando los tiempos de análisis en un 3%.</li>
+                                    <li>Optimicé la gestión de tareas y responsabilidades mediante la priorización y
+                                        análisis estructurado de la información, mejorando la eficiencia operativa
+                                        diaria.</li>
+                                    <li>Realicé análisis periódicos de inventario y ventas semanales, apoyando el
+                                        seguimiento del desempeño comercial y contribuyendo a una mejora cercana al 2%
+                                        en la precisión del control de información.</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
-                    <!-- Job 2 -->
-                    <div class="flex flex-col sm:flex-row items-center sm:items-start space-y-4 sm:space-y-0 sm:space-x-6">
-                        <img src="https://i.ibb.co/whdxmVSc/Eficacia-logo-1024x955.png" alt="Logo Eficacia" class="w-16 h-16 rounded-full object-contain border-2 border-gray-300 flex-shrink-0" onerror="this.onerror=null; this.src='https://placehold.co/64x64/cccccc/969696?text=Logo'; this.alt='Logo Eficacia';">
-                        <div class="flex-grow text-center sm:text-left">
-                            <p class="text-sm text-gray-500 mb-1">Abr 2024 – Jun 2024</p>
-                            <h3 class="text-xl font-semibold text-gray-900">Auxiliar de Facturación (Reemplazo)</h3>
-                            <p class="text-lg text-gray-700 mb-2">COLTABACO - (Eficacia) | Medellín</p>
-                            <ul class="list-disc list-inside text-gray-600 space-y-1 text-sm sm:text-base text-left">
-                                <li>Implementé soluciones de automatización que mejoraron la eficiencia operativa, reduciendo el tiempo de procesamiento de facturas en un 5%, y gestioné datos utilizando Excel y SAP.</li>
-                                <li>Gestioné y mantuve bases de datos precisas que aseguraron la integridad de la información, minimizando los errores de facturación y mejorando la confiabilidad de los datos.</li>
-                                <li>Realicé la facturación de pedidos y verifiqué la información de inventarios a través de SAP.</li>
-                                <li>Brindé soporte a los equipos comerciales en la optimización de procesos operativos de facturación, incrementando la satisfacción y fidelización de los clientes.</li>
-                            </ul>
+
+                    <!-- Empleo 2 -->
+                    <div class="relative flex flex-col sm:flex-row items-center justify-between w-full group">
+                        <div class="order-1 w-full pl-20 sm:pl-0 sm:w-[47%] text-left sm:text-right sm:pr-8">
+                            <div
+                                class="bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-800 group-hover:shadow-md transition-shadow">
+                                <p class="text-brand-600 font-semibold text-sm mb-1 sm:hidden">Abr 2024 – Jun 2024</p>
+                                <h3 class="font-bold text-xl text-white pb-1">COLTABACO - (Eficacia) | Medellín</h3>
+                                <p class="text-sm text-brand-400 font-medium mb-4">Auxiliar de Facturación (Reemplazo)
+                                </p>
+                                <ul
+                                    class="list-disc list-outside ml-4 sm:ml-0 sm:dir-rtl text-sm text-slate-400 space-y-2 text-left sm:text-right">
+                                    <li class="sm:list-none">Implementé soluciones de automatización que mejoraron la
+                                        eficiencia operativa, reduciendo el tiempo de procesamiento de facturas en un
+                                        5%, y gestioné datos utilizando Excel y SAP.</li>
+                                    <li class="sm:list-none">Gestioné y mantuve bases de datos precisas que aseguraron
+                                        la integridad de la información, minimizando los errores de facturación y
+                                        mejorando la confiabilidad de los datos.</li>
+                                    <li class="sm:list-none">Realicé la facturación de pedidos y verifiqué la
+                                        información de inventarios a través de SAP.</li>
+                                    <li class="sm:list-none">Brindé soporte a los equipos comerciales en la optimización
+                                        de procesos operativos de facturación, incrementando la satisfacción y
+                                        fidelización de los clientes.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div
+                            class="z-10 flex items-center order-1 w-20 h-20 bg-slate-900 shadow-lg rounded-full border-4 border-slate-800 justify-center absolute left-0 sm:left-1/2 transform sm:-translate-x-1/2">
+                            <img src="https://i.ibb.co/whdxmVSc/Eficacia-logo-1024x955.png" alt="Eficacia"
+                                class="w-16 h-16 rounded-full object-contain">
+                        </div>
+                        <div class="order-1 hidden sm:block sm:w-[47%] text-left pl-8">
+                            <p class="text-slate-400 font-medium tracking-wide text-sm">Abr 2024 – Jun 2024</p>
                         </div>
                     </div>
-                    <!-- Job 3 -->
-                    <div class="flex flex-col sm:flex-row items-center sm:items-start space-y-4 sm:space-y-0 sm:space-x-6">
-                        <img src="https://i.ibb.co/LzGgLR6T/Captura-de-pantalla-2025-05-25-172719.png" alt="Logo MARÍA SHALOM S.A.S" class="w-16 h-16 rounded-full object-contain border-2 border-gray-300 flex-shrink-0" onerror="this.onerror=null; this.src='https://placehold.co/64x64/cccccc/969696?text=Logo'; this.alt='Logo MARÍA SHALOM S.A.S';">
-                        <div class="flex-grow text-center sm:text-left">
-                            <p class="text-sm text-gray-500 mb-1">Sep 2023 – Abr 2024</p>
-                            <h3 class="text-xl font-semibold text-gray-900">Analista de Información</h3>
-                            <p class="text-lg text-gray-700 mb-2">MARÍA SHALOM S.A.S | Itagüí</p>
-                            <ul class="list-disc list-inside text-gray-600 space-y-1 text-sm sm:text-base text-left">
-                                <li>Implementé un sistema automatizado de recolección y análisis de datos de producción que incrementó la precisión de los informes en un 10%.</li>
-                                <li>Diseñé y optimicé una base de datos centralizada que permitió un acceso más rápido a la información y agilizó la toma de decisiones en un 4%</li>
-                                <li>Identifiqué tendencias y patrones clave en los datos que permitieron optimizar los procesos de producción.</li>
-                                <li>Presenté informes concisos y accionables a través de Excel avanzado y Power bi para la toma de decisiones estratégicas.</li>
-                            </ul>
+
+                    <!-- Empleo 3 -->
+                    <div class="relative flex flex-col sm:flex-row items-center justify-between w-full group">
+                        <div class="order-1 hidden sm:block sm:w-[47%] text-right pr-8">
+                            <p class="text-slate-400 font-medium tracking-wide text-sm">Sep 2023 – Abr 2024</p>
+                        </div>
+                        <div
+                            class="z-10 flex items-center order-1 w-20 h-20 bg-slate-900 shadow-lg rounded-full border-4 border-slate-800 justify-center absolute left-0 sm:left-1/2 transform sm:-translate-x-1/2">
+                            <img src="https://i.ibb.co/LzGgLR6T/Captura-de-pantalla-2025-05-25-172719.png"
+                                alt="Maria Shalom" class="w-16 h-16 rounded-full object-contain">
+                        </div>
+                        <div class="order-1 w-full pl-20 sm:pl-0 sm:w-[47%] text-left sm:pl-8">
+                            <div
+                                class="bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-800 group-hover:shadow-md transition-shadow">
+                                <p class="text-brand-600 font-semibold text-sm mb-1 sm:hidden">Sep 2023 – Abr 2024</p>
+                                <h3 class="font-bold text-xl text-white pb-1">MARÍA SHALOM S.A.S | Itagüí</h3>
+                                <p class="text-sm text-brand-400 font-medium mb-4">Analista de Información</p>
+                                <ul class="list-disc list-outside ml-4 text-sm text-slate-400 space-y-2">
+                                    <li>Implementé un sistema automatizado de recolección y análisis de datos de
+                                        producción que incrementó la precisión de los informes en un 10%.</li>
+                                    <li>Diseñé y optimicé una base de datos centralizada que permitió un acceso más
+                                        rápido a la información y agilizó la toma de decisiones en un 4%.</li>
+                                    <li>Identifiqué tendencias y patrones clave en los datos que permitieron optimizar
+                                        los procesos de producción.</li>
+                                    <li>Presenté informes concisos y accionables a través de Excel avanzado y Power bi
+                                        para la toma de decisiones estratégicas.</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
-                    <!-- Job 4 -->
-                    <div class="flex flex-col sm:flex-row items-center sm:items-start space-y-4 sm:space-y-0 sm:space-x-6">
-                        <img src="https://i.ibb.co/B5BDZqNv/1657138756271.jpg" alt="Logo INTEGRALES COLOMBIA S.A.S" class="w-16 h-16 rounded-full object-contain border-2 border-gray-300 flex-shrink-0" onerror="this.onerror=null; this.src='https://placehold.co/64x64/cccccc/969696?text=Logo'; this.alt='Logo INTEGRALES COLOMBIA S.A.S';">
-                        <div class="flex-grow text-center sm:text-left">
-                            <p class="text-sm text-gray-500 mb-1">Mar 2023 – Ago 2023</p>
-                            <h3 class="text-xl font-semibold text-gray-900">Auxiliar Analista de Datos</h3>
-                            <p class="text-lg text-gray-700 mb-2">Grupo Logis – (INTEGRALES COLOMBIA S.A.S) | Copacabana</p>
-                            <ul class="list-disc list-inside text-gray-600 space-y-1 text-sm sm:text-base text-left">
-                                <li>Optimicé el análisis y la manipulación de datos mediante el manejo avanzado de Excel, reduciendo el tiempo de procesamiento de reportes.</li>
-                                <li>Desarrollé y actualicé informes en Power BI para la visualización de datos, mejorando la calidad y claridad de la información presentada a los clientes y gerentes en un 10%.</li>
-                                <li>Creé y gestioné bases de datos para el almacenamiento de información, aumentando la integridad de los datos en un 6% y asegurando su confiabilidad.</li>
-                                <li>Utilicé el sistema SAP de forma eficiente y precisa para el cargue y modificación de información, reduciendo los errores administrativos en un 15%.</li>
-                                <li>Realicé el seguimiento a las actividades de facturación para reporte de gastos.</li>
-                                <li>Brindé soporte a los equipos comerciales en la optimización de procesos operativos, incrementando la satisfacción del cliente en un 5%.</li>
-                            </ul>
+
+                    <!-- Empleo 4 -->
+                    <div class="relative flex flex-col sm:flex-row items-center justify-between w-full group">
+                        <div class="order-1 w-full pl-20 sm:pl-0 sm:w-[47%] text-left sm:text-right sm:pr-8">
+                            <div
+                                class="bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-800 group-hover:shadow-md transition-shadow">
+                                <p class="text-brand-600 font-semibold text-sm mb-1 sm:hidden">Mar 2023 – Ago 2023</p>
+                                <h3 class="font-bold text-xl text-white pb-1">Grupo Logis – (INTEGRALES COLOMBIA S.A.S)
+                                    | Copacabana</h3>
+                                <p class="text-sm text-brand-400 font-medium mb-4">Auxiliar Analista de Datos</p>
+                                <ul
+                                    class="list-disc list-outside ml-4 sm:ml-0 sm:dir-rtl text-sm text-slate-400 space-y-2 text-left sm:text-right">
+                                    <li class="sm:list-none">Optimicé el análisis y la manipulación de datos mediante el
+                                        manejo avanzado de Excel, reduciendo el tiempo de procesamiento de reportes.
+                                    </li>
+                                    <li class="sm:list-none">Desarrollé y actualicé informes en Power BI para la
+                                        visualización de datos, mejorando la calidad y claridad de la información
+                                        presentada a los clientes y gerentes en un 10%.</li>
+                                    <li class="sm:list-none">Creé y gestioné bases de datos para el almacenamiento de
+                                        información, aumentando la integridad de los datos en un 6% y asegurando su
+                                        confiabilidad.</li>
+                                    <li class="sm:list-none">Utilicé el sistema SAP de forma eficiente y precisa para el
+                                        cargue y modificación de información, reduciendo los errores administrativos en
+                                        un 15%.</li>
+                                    <li class="sm:list-none">Realicé el seguimiento a las actividades de facturación
+                                        para reporte de gastos.</li>
+                                    <li class="sm:list-none">Brindé soporte a los equipos comerciales en la optimización
+                                        de procesos operativos, incrementando la satisfacción del cliente en un 5%.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div
+                            class="z-10 flex items-center order-1 w-20 h-20 bg-slate-900 shadow-lg rounded-full border-4 border-slate-800 justify-center absolute left-0 sm:left-1/2 transform sm:-translate-x-1/2">
+                            <img src="https://i.ibb.co/B5BDZqNv/1657138756271.jpg" alt="Integrales Colombia Logo"
+                                class="w-16 h-16 rounded-full object-contain">
+                        </div>
+                        <div class="order-1 hidden sm:block sm:w-[47%] text-left pl-8">
+                            <p class="text-slate-400 font-medium tracking-wide text-sm">Mar 2023 – Ago 2023</p>
                         </div>
                     </div>
+
+                    <!-- Empleo 5 -->
+                    <div class="relative flex flex-col sm:flex-row items-center justify-between w-full group">
+                        <div class="order-1 hidden sm:block sm:w-[47%] text-right pr-8">
+                            <p class="text-slate-400 font-medium tracking-wide text-sm">May 2022 – Nov 2022</p>
+                        </div>
+                        <div
+                            class="z-10 flex items-center order-1 w-20 h-20 bg-slate-900 shadow-lg rounded-full border-4 border-slate-800 justify-center absolute left-0 sm:left-1/2 transform sm:-translate-x-1/2 overflow-hidden">
+                            <img src="https://www.comfama.com/assets/img/logo-comfama.svg" alt="Comfama Logo"
+                                class="w-16 h-16 object-contain"
+                                onerror="this.onerror=null; this.src='https://placehold.co/100x100/ec4899/white?text=Comfama';">
+                        </div>
+                        <div class="order-1 w-full pl-20 sm:pl-0 sm:w-[47%] text-left sm:pl-8">
+                            <div
+                                class="bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-800 group-hover:shadow-md transition-shadow">
+                                <p class="text-brand-600 font-semibold text-sm mb-1 sm:hidden">May 2022 – Nov 2022</p>
+                                <h3 class="font-bold text-xl text-white pb-1">Comfama | Medellín</h3>
+                                <p class="text-sm text-brand-400 font-medium mb-4">Auxiliar Administrativo</p>
+                                <ul class="list-disc list-outside ml-4 text-sm text-slate-400 space-y-2">
+                                    <li>Elaboré reportes operativos y análisis de información en Excel avanzado,
+                                        facilitando la visualización de datos para la toma de decisiones del equipo.
+                                    </li>
+                                    <li>Diseñé y administré bases de datos administrativas, mejorando la organización y
+                                        disponibilidad de la información y reduciendo inconsistencias en aproximadamente
+                                        un 3%.</li>
+                                    <li>Apoyé la gestión de consultas de usuarios y seguimiento de solicitudes,
+                                        contribuyendo a optimizar los tiempos de respuesta del área en cerca de un 2%.
+                                    </li>
+                                    <li>Realicé control y actualización de registros administrativos, garantizando
+                                        precisión y trazabilidad de la información para los procesos internos.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Empleo 6 -->
+                    <div class="relative flex flex-col sm:flex-row items-center justify-between w-full group">
+                        <div class="order-1 w-full pl-20 sm:pl-0 sm:w-[47%] text-left sm:text-right sm:pr-8">
+                            <div
+                                class="bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-800 group-hover:shadow-md transition-shadow">
+                                <p class="text-brand-600 font-semibold text-sm mb-1 sm:hidden">Oct 2021 – Abr 2022</p>
+                                <h3 class="font-bold text-xl text-white pb-1">Atento – Sufi | Medellín</h3>
+                                <p class="text-sm text-brand-400 font-medium mb-4">Analista de Negocios</p>
+                                <ul
+                                    class="list-disc list-outside ml-4 sm:ml-0 sm:dir-rtl text-sm text-slate-400 space-y-2 text-left sm:text-right">
+                                    <li class="sm:list-none">Analicé información operativa mediante Excel avanzado,
+                                        identificando patrones y oportunidades de mejora que contribuyeron a optimizar
+                                        la eficiencia del equipo en aproximadamente un 3%.</li>
+                                    <li class="sm:list-none">Diseñé y administré bases de datos para seguimiento de
+                                        indicadores operativos, mejorando la organización y disponibilidad de la
+                                        información para el área.</li>
+                                    <li class="sm:list-none">Desarrollé reportes interactivos en Power BI, facilitando
+                                        la visualización de métricas clave y apoyando el análisis de desempeño del
+                                        proceso.</li>
+                                    <li class="sm:list-none">Realicé análisis de procesos y revisión de indicadores
+                                        operativos, identificando oportunidades de mejora que contribuyeron a reducir
+                                        inconsistencias en los reportes en cerca de un 2%.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div
+                            class="z-10 flex items-center order-1 w-20 h-20 bg-slate-900 shadow-lg rounded-full border-4 border-slate-800 justify-center absolute left-0 sm:left-1/2 transform sm:-translate-x-1/2 overflow-hidden">
+                            <img src="https://sufi.grupobancolombia.com/sufi/documents/213008/1792612/logo-sufi-horizontal.png"
+                                alt="Sufi Logo" class="w-16 h-16 object-contain"
+                                onerror="this.onerror=null; this.src='https://placehold.co/100x100/ef4444/white?text=Sufi';">
+                        </div>
+                        <div class="order-1 hidden sm:block sm:w-[47%] text-left pl-8">
+                            <p class="text-slate-400 font-medium tracking-wide text-sm">Oct 2021 – Abr 2022</p>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </section>
 
         <!-- Education Section -->
-        <section id="education" class="py-16 lg:py-24 bg-white">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 class="text-3xl font-bold text-center mb-16 text-gray-900">Formación Académica</h2>
-                <div class="space-y-8 max-w-4xl mx-auto">
-                    
+        <section id="education" class="py-24 bg-slate-900">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 reveal">
+                <h2 class="text-3xl sm:text-4xl font-bold text-center mb-16 text-white">Formación Académica</h2>
+
+                <div class="space-y-8">
                     <!-- Formación 1 -->
-                    <div class="relative pl-6 sm:pl-10 pb-8 last:pb-0 before:absolute before:left-0 before:top-2 before:h-full before:w-1 before:bg-gray-300 before:rounded-full">
-                        <div class="absolute left-[-1.5rem] sm:left-[-2rem] top-2 h-8 w-8 bg-gray-900 rounded-full flex items-center justify-center">
-                            <svg class="h-4 w-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.483 9.24 5 7.5 5S4.168 5.483 3 6.253v13C4.168 18.483 5.76 18 7.5 18s3.332.483 4.5 1.253m0-13C13.168 5.483 14.76 5 16.5 5s3.332.483 4.5 1.253v13C19.832 18.483 18.24 18 16.5 18s-3.332.483-4.5 1.253"/>
+                    <div
+                        class="bg-slate-950 rounded-3xl p-8 border border-slate-800 hover:shadow-lg transition-shadow flex flex-col sm:flex-row items-center sm:items-start gap-6">
+                        <div
+                            class="w-16 h-16 rounded-2xl bg-slate-800 text-brand-600 flex items-center justify-center flex-shrink-0">
+                            <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 14l9-5-9-5-9 5 9 5z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222" />
                             </svg>
                         </div>
-                        <div class="bg-gray-50 rounded-lg p-6 sm:p-8">
-                            <h3 class="text-xl font-bold text-gray-900">Tecnólogo Industrial</h3>
-                            <p class="text-lg text-gray-700">Politécnico Colombiano Jaime Isaza Cadavid</p>
-                            <p class="text-sm text-gray-500 mt-1">2015 – 2019 | Medellín</p>
+                        <div class="text-center sm:text-left">
+                            <h3 class="text-2xl font-bold text-brand-600 mb-2">Tecnólogo Industrial</h3>
+                            <p class="text-lg text-slate-400 font-medium mb-1">Politécnico Colombiano Jaime Isaza
+                                Cadavid</p>
+                            <p class="text-slate-400">2015 – 2019 | Medellín</p>
                         </div>
                     </div>
 
                     <!-- Formación 2 -->
-                    <div class="relative pl-6 sm:pl-10 pb-8 last:pb-0 before:absolute before:left-0 before:top-2 before:h-full before:w-1 before:bg-gray-300 before:rounded-full">
-                        <div class="absolute left-[-1.5rem] sm:left-[-2rem] top-2 h-8 w-8 bg-gray-900 rounded-full flex items-center justify-center">
-                            <svg class="h-4 w-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    <div
+                        class="bg-slate-950 rounded-3xl p-8 border border-slate-800 hover:shadow-lg transition-shadow flex flex-col sm:flex-row items-center sm:items-start gap-6">
+                        <div
+                            class="w-16 h-16 rounded-2xl bg-slate-800 text-brand-600 flex items-center justify-center flex-shrink-0">
+                            <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path
+                                    d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"
+                                    stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
                             </svg>
                         </div>
-                        <div class="bg-gray-50 rounded-lg p-6 sm:p-8">
-                            <h3 class="text-xl font-bold text-gray-900">Análisis de Datos y Business Intelligence (200 horas)</h3>
-                            <p class="text-lg text-gray-700">Platzi</p>
-                            <p class="text-sm text-gray-500 mt-1">2023 | Virtual</p>
+                        <div class="text-center sm:text-left">
+                            <h3 class="text-2xl font-bold text-brand-600 mb-2">Análisis de Datos y Business Intelligence
+                                (200 horas)</h3>
+                            <p class="text-lg text-slate-400 font-medium mb-1">Platzi</p>
+                            <p class="text-slate-400">2023 | Virtual</p>
                         </div>
                     </div>
-
                 </div>
             </div>
         </section>
 
-        <!-- Contact Section -->
-        <section id="contact" class="py-16 lg:py-24 bg-gray-900 text-white">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                <h2 class="text-3xl font-bold mb-8">¿Listo para transformar tus datos en valor?</h2>
-                <p class="text-xl text-gray-300 mb-12 max-w-2xl mx-auto">
-                    Estoy disponible para nuevas oportunidades y colaboraciones. ¡Hablemos!
+        <!-- CTA / Contact form -->
+        <section id="contact" class="py-24 bg-slate-900 border-t border-slate-800 relative overflow-hidden">
+            <!-- Glow effect -->
+            <div
+                class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-brand-900/400 rounded-full blur-[100px] opacity-20 pointer-events-none">
+            </div>
+
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 reveal">
+                <span
+                    class="bg-slate-700/50/10 border border-slate-400/20 text-slate-300 text-sm font-semibold tracking-wider uppercase px-4 py-1.5 rounded-full mb-6 inline-block">Contacto</span>
+                <h2 class="text-4xl md:text-5xl font-bold text-brand-600 mb-6">¿Listo para transformar tus datos?</h2>
+                <p class="text-xl text-slate-400 mb-12 max-w-2xl mx-auto font-light">
+                    Estoy disponible para nuevas oportunidades y aportar valor estratégico a tu equipo.
                 </p>
-                <div class="flex flex-col sm:flex-row justify-center items-center space-y-6 sm:space-y-0 sm:space-x-12">
-                    <div class="flex flex-col items-center">
-                        <div class="bg-gray-800 p-4 rounded-full mb-4">
-                            <svg class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                            </svg>
-                        </div>
-                        <p class="text-lg font-medium">carlos_muriel06151@elpoli.edu.co</p>
-                    </div>
-                    <div class="flex flex-col items-center">
-                        <div class="bg-gray-800 p-4 rounded-full mb-4">
-                            <svg class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                            </svg>
-                        </div>
-                        <p class="text-lg font-medium">+57 3244053493</p>
-                    </div>
+
+                <div class="flex flex-col sm:flex-row justify-center items-center gap-6">
+                    <a href="mailto:carlos123elmore@gmail.com"
+                        class="flex items-center gap-3 w-full sm:w-auto bg-slate-900 border border-slate-800 hover:bg-brand-600 px-6 py-4 rounded-2xl transition-all duration-300 text-brand-600">
+                        <svg class="w-6 h-6 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                        </svg>
+                        <span class="font-medium">carlos123elmore@gmail.com</span>
+                    </a>
+                    <a href="https://wa.me/573244053493" target="_blank" rel="noopener noreferrer"
+                        class="flex items-center gap-3 w-full sm:w-auto bg-brand-600 hover:bg-slate-700/50 px-8 py-4 rounded-2xl transition-all duration-300 shadow-lg shadow-brand-500/25 text-brand-600">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+                        </svg>
+                        <span class="font-medium text-white">Contactar por WhatsApp</span>
+                    </a>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer class="bg-white py-8 border-t border-gray-200">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-gray-500 text-sm">
-            <p>&copy; 2025 Carlos Andrés Muriel Taborda. Todos los derechos reservados.</p>
+        <footer class="bg-slate-950 pt-20 pb-10 border-t border-white/10 relative overflow-hidden">
+        <!-- Footer subtle glow -->
+        <div class="absolute top-0 left-1/2 transform -translate-x-1/2 w-3/4 h-32 bg-brand-600/5 blur-[100px] pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+                <!-- Brand & Pitch -->
+                <div class="col-span-1 md:col-span-2">
+                    <span class="font-extrabold text-2xl tracking-tight text-white mb-6 inline-block">
+                        Carlos<span class="text-slate-500">.</span>M
+                    </span>
+                    <p class="text-slate-400 max-w-sm mb-8 leading-relaxed font-light">
+                        Transformando datos en decisiones estratégicas. Analizando información para encontrar patrones y optimizar el rendimiento del negocio.
+                    </p>
+                    <div class="flex gap-4">
+                        <a href="https://www.linkedin.com/in/carlos-andr%C3%A9s-muriel-5a0467322/" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:bg-brand-600 hover:text-black hover:border-white transition-all duration-300 shadow-sm">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.59-11.018-3.714v-2.155z" />
+                            </svg>
+                        </a>
+                        <a href="mailto:carlos123elmore@gmail.com" class="w-10 h-10 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:bg-brand-600 hover:text-black hover:border-white transition-all duration-300 shadow-sm">
+                            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Navigation Links -->
+                <div>
+                    <h4 class="text-brand-600 font-semibold mb-6 tracking-wide uppercase text-xs">Navegación</h4>
+                    <ul class="space-y-4 text-sm text-slate-400 font-light">
+                        <li><a href="#about" class="hover:text-brand-600 flex items-center gap-2 transition-colors"><span class="w-1 h-1 rounded-full bg-slate-600"></span> Acerca de Mí</a></li>
+                        <li><a href="#projects" class="hover:text-brand-600 flex items-center gap-2 transition-colors"><span class="w-1 h-1 rounded-full bg-slate-600"></span> Proyectos</a></li>
+                        <li><a href="#skills" class="hover:text-brand-600 flex items-center gap-2 transition-colors"><span class="w-1 h-1 rounded-full bg-slate-600"></span> Habilidades</a></li>
+                        <li><a href="#experience" class="hover:text-brand-600 flex items-center gap-2 transition-colors"><span class="w-1 h-1 rounded-full bg-slate-600"></span> Experiencia</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Info -->
+                <div>
+                    <h4 class="text-brand-600 font-semibold mb-6 tracking-wide uppercase text-xs">Contacto</h4>
+                    <ul class="space-y-4 text-sm text-slate-400 font-light">
+                        <li class="flex items-start gap-3">
+                            <svg class="w-5 h-5 text-slate-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
+                            <a href="mailto:carlos123elmore@gmail.com" class="hover:text-brand-600 transition-colors">carlos123elmore@gmail.com</a>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <svg class="w-5 h-5 text-slate-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+                            Medellín, Colombia
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <svg class="w-5 h-5 text-slate-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
+                            <a href="https://wa.me/573244053493" target="_blank" rel="noopener noreferrer" class="hover:text-brand-600 transition-colors">+57 324 405 3493</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
         </div>
     </footer>
 
-    <!-- Mobile Menu Toggle Script -->
+    <!-- Interactive Scripts -->
     <script>
+        // Mobile Menu toggle
         const btn = document.getElementById('mobile-menu-button');
         const menu = document.getElementById('mobile-menu');
 
@@ -379,14 +963,28 @@
             menu.classList.toggle('hidden');
         });
 
-        // Close menu when clicking a link
-        document.querySelectorAll('#mobile-menu a').forEach(link => {
+        const links = menu.querySelectorAll('a');
+        links.forEach(link => {
             link.addEventListener('click', () => {
                 menu.classList.add('hidden');
             });
         });
+
+        // Scroll reveals intersections
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealOnScroll = () => {
+            const windowHeight = window.innerHeight;
+            revealElements.forEach(el => {
+                const elementTop = el.getBoundingClientRect().top;
+                if (elementTop < windowHeight - 100) {
+                    el.classList.add('active');
+                }
+            });
+        }
+        window.addEventListener('scroll', revealOnScroll);
+        // Trigger once on load
+        revealOnScroll();
     </script>
 </body>
+
 </html>
-
-
